@@ -16,10 +16,10 @@ namespace ConsoleComptes
             var analyseurFichier = new AnalyseurCSV();
             var service = new ServiceCalculs();
 
-            // 1. On récupère les données
+            // Récupère les données
             var donnees = analyseurFichier.LireFichier("account_20230228.csv");
 
-            // 2. On demande à l'utilisateur de saisir une date pour calculer le solde à cette date
+            // Demande à l'utilisateur de saisir une date pour calculer le solde à cette date
             Console.Write("Veuillez saisir une date au format dd/mm/yyyy pour connaître le solde à cette date : ");
 
             try
@@ -36,7 +36,7 @@ namespace ConsoleComptes
                 Console.WriteLine("Format de date invalide. Veuillez saisir une date au format dd/MM/yyyy.");
             }
 
-            // 3. On affiche les plus grandes catégories en débits/dépenses
+            // Affiche les plus grandes catégories en débits/dépenses
             Console.WriteLine("\nVoici les plus grandes catégories de débit :");
             service.AfficherTopCategoriesDebit(donnees.Liste);
 

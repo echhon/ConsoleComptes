@@ -22,7 +22,5 @@ namespace ConsoleComptes
             Devise = devise;
             Categorie = categorie;
         }
-
     }    
-
 }

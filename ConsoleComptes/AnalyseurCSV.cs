@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -40,13 +39,12 @@ namespace ConsoleComptes
                 string devise = colonnes[2].Trim();
                 decimal montantOrigine = decimal.Parse(colonnes[1], CultureInfo.InvariantCulture);
 
-                // On convertit tout de suite en Euros
+                // Convertit tout de suite en Euros si la devise n'est pas déjà en EUR
                 decimal montantEuros = montantOrigine * tauxVersEuro[devise];
 
                 listeTransactionComptes.Add(new TransactionCompte(
                     DateTime.ParseExact(colonnes[0], "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    montantEuros, devise, colonnes[3].Trim()
-                ));
+                    montantEuros, devise, colonnes[3].Trim()));
             }
 
             return (solde, dateRef, listeTransactionComptes);
