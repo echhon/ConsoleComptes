@@ -26,8 +26,8 @@ namespace ConsoleComptes
             //USD/EUR:1.445
             var tauxVersEuro = new Dictionary<string, decimal>();
             tauxVersEuro.Add("EUR", decimal.Parse("1.0", CultureInfo.InvariantCulture));
-            tauxVersEuro.Add("JPY ", decimal.Parse("0.482", CultureInfo.InvariantCulture));
-            tauxVersEuro.Add("USD ", decimal.Parse("1.445", CultureInfo.InvariantCulture));
+            tauxVersEuro.Add("JPY", decimal.Parse("0.482", CultureInfo.InvariantCulture));
+            tauxVersEuro.Add("USD", decimal.Parse("1.445", CultureInfo.InvariantCulture));
 
             // Lecture des transactions (à partir de la ligne 4)
             // 06/10/2022;-504.61;EUR;Loisir
