@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ConsoleComptes/ConsoleComptes.csproj" />
+  <Project Path="ConsolesComptesTests/ConsolesComptesTests.csproj" Id="2a34e835-ac65-4d64-8fd0-81c6c9534195" />
 </Solution>

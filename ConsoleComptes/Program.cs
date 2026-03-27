@@ -37,8 +37,13 @@ namespace ConsoleComptes
             }
 
             // Affiche les plus grandes catégories en débits/dépenses
-            Console.WriteLine("\nVoici les plus grandes catégories de débit :");
-            service.AfficherTopCategoriesDebit(donnees.Liste);
+            Console.WriteLine("\nVoici les plus grandes catégories de débit :");          
+            List<(string Nom, decimal Total)> listeCategoriesDebit = new List<(string Nom, decimal Total)>();
+            listeCategoriesDebit=service.AfficherTopCategoriesDebit(donnees.Liste);
+            foreach (var item in listeCategoriesDebit)
+            {
+                Console.WriteLine($"- {item.Nom} : {item.Total} EUR");
+            }
 
         }
     }

@@ -25,19 +25,23 @@ namespace ConsoleComptes
         }
 
         // Trouve les catégories où il y a les plus grands débits/dépenses
-        public void AfficherTopCategoriesDebit(List<TransactionCompte> historiqueTransaction)
+        public List<(string Nom, decimal Total)> AfficherTopCategoriesDebit(List<TransactionCompte> historiqueTransaction)
         {
             var top = historiqueTransaction
                 .Where(t => t.Montant < 0)
                 .GroupBy(t => t.Categorie)
                 .Select(g => new { Nom = g.Key, Total = g.Sum(t => t.Montant) })
                 .OrderBy(res => res.Total) 
-                .Take(3); // prend les 3 premiers (les plus grands débits)
+                .Take(3).ToList();
+                ; // prend les 3 premiers (les plus grands débits)
 
+            List<(string Nom, decimal Total)> listeCategoriesDebit = new List<(string Nom, decimal Total)>();
             foreach (var item in top)
-            {
-                Console.WriteLine($"- {item.Nom} : {item.Total} EUR");
+            {               
+                listeCategoriesDebit.Add((item.Nom, item.Total));                
             }
+
+            return listeCategoriesDebit;
         }
     }
 }
