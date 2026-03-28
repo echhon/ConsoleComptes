@@ -10,7 +10,7 @@ namespace ConsoleComptes.Tests
         [Fact]
         public void CalculerSoldeADate_DevraitRetournerLeBonSolde_QuandOnRemonteLeTemps()
         {
-            // ARRANGE : Crée des données de test
+            // Préparation : crée des données de test
             var service = new ServiceCalculs();
             decimal soldeAu28Fevrier = 1000m;
 
@@ -22,21 +22,22 @@ namespace ConsoleComptes.Tests
                 new TransactionCompte(new DateTime(2023, 02, 10), -50m, "EUR", "Alimentation")
             };
 
-            // ACT : Veut le solde au 12 février 
+            // Action : Veut le solde au 12 février 
             // (La transaction du 15 doit être annulée, celle du 10 doit rester)
             DateTime dateCible = new DateTime(2023, 02, 12);
             decimal resultat = service.CalculerSoldeADate(dateCible, soldeAu28Fevrier, historiqueTransaction);
 
-            // ASSERT : 
+            // Vérification : 
             // Formule : SoldeFinal (1000) - Somme des transactions après le 12 février (-100)
             // 1000 - (-100) = 1100
+            // Résultat attendu : 1100€
             Assert.Equal(1100m, resultat);
         }
 
         [Fact]
         public void ObtenirTopDepenses_DevraitRetournerLesTroisPlusGrossesCategories()
         {
-            // ARRANGE
+            // Préparation : crée des données de test
             var service = new ServiceCalculs();
             var historiqueTransaction = new List<TransactionCompte>
             {
@@ -47,11 +48,11 @@ namespace ConsoleComptes.Tests
                 new TransactionCompte(DateTime.Now, 5000m, "EUR", "Salaire") 
             };
 
-            // ACT
-            // Récupère les 3 plus grandes catégories en débits/dépenses         
+            // Action : récupère les 3 plus grandes catégories en débits/dépenses         
             var top = service.AfficherTopCategoriesDebit(historiqueTransaction);
 
-            // ASSERT
+            // Vérification
+            // Résultat attendu : Loyer, Loisir, Courses (dans cet ordre)
             Assert.Equal("Loyer", top[0].Nom);    // Le plus gros débit (-500)
             Assert.Equal("Loisir", top[1].Nom);   // Le 2ème (-200)
             Assert.Equal("Courses", top[2].Nom);  // Le 3ème (-100)
